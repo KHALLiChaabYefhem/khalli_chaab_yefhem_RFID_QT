@@ -1,24 +1,25 @@
-bool Employe::rfidExists(QString uid)
+bool Employer::rfidExists(QString uid)
 {
     QSqlQuery query;
-    query.prepare("SELECT COUNT(*) FROM employe WHERE rfid_uid = ?");
-    query.addBindValue(uid);
-    query.exec();
-    query.next();
-    int count = query.value(0).toInt();
-    return count > 0;
+        query.prepare("SELECT RFID FROM EMPLOYER WHERE RFID = ?");
+        query.addBindValue(uid);
+        if (query.exec() && query.next()) {
+            // If a row is returned, the uid exists in the database
+            return true;
+        }
+    // If no row is returned, the uid does not exist in the database
+    return false;
 }
 
-
 QString Employe::rfidName(QString uid)
-    {
-        QSqlQuery query;
-        query.prepare("SELECT name FROM employe WHERE rfid_uid = ?");
+{
+    QSqlQuery query;
+        query.prepare("SELECT NOM FROM EMPLOYER WHERE RFID = ?");
         query.addBindValue(uid);
-        query.exec();
-        if (query.next()) {
+        if (query.exec() && query.next()) {
+            // If a row is returned, extract the value of the NOM attribute
             return query.value(0).toString();
-        } else {
-            return QString(); // return an empty string if no matching record is found
         }
-    }
+        // If no row is returned, return an empty string to indicate failure
+        return "";
+}
