@@ -21,7 +21,7 @@ unsigned long previousMillis = 0; // variable to store the previous time
 const unsigned long interval = 2000; // interval for stopping RFID card reading in milliseconds, 2000 seconds
 
 void setup() {
-  // put your setup code here, to run once:
+  // the setup code , to run once:
   
   SPI.begin();
   rfid.PCD_Init();
@@ -38,7 +38,7 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  //the  main code , to run repeatedly:
 
   // Check if the elapsed time since the last RFID card reading is greater than the interval
   unsigned long currentMillis = millis();
