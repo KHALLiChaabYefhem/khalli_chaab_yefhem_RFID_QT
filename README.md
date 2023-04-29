@@ -11,7 +11,8 @@ This code allows you to add an RFID scenario for login to your QT program such t
 ### QT part
 * add " serialport " after the "QT += "to your .pro file.
 * Add the Arduino class to your QT project and copy pase the code ( even if you have it copy paste the code "serial->waitreadyread(200)will make the difference).
-* Add what's in the file "to_be_added.cpp" in the constructor of the Mainwindow.cpp.
+* Add what's in the file "to_be_added_MW.cpp" in the constructor of the Mainwindow.cpp.
+* Add what's in the file "your_class.cpp" in the .cpp of your class( entité/tache).
 * Add the "connect_rfid()" function in " private slots " of your Mainwindow.h file. 
 * copy and paste the function "connect_RFID()" in the Maainwindow.cpp.
 
