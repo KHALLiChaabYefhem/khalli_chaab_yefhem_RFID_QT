@@ -13,7 +13,7 @@ char data;
 bool lecture=false;
 MFRC522 rfid(SS_PIN, RST_PIN); // Instance of the class
 
-MFRC522::MIFARE_Key key; 
+MFRC522::MIFARE_Key key;
 
 byte nuidPICC[4];
 
@@ -21,8 +21,8 @@ unsigned long previousMillis = 0; // variable to store the previous time
 const unsigned long interval = 2000; // interval for stopping RFID card reading in milliseconds, 2000 seconds
 
 void setup() {
-  // the setup code , to run once:
-  
+  // put your setup code here, to run once:
+ 
   SPI.begin();
   rfid.PCD_Init();
 
@@ -30,15 +30,15 @@ void setup() {
   digitalWrite(5,LOW);
   pinMode(LED, OUTPUT); // Declare the LED as an output
   Serial.begin(115200);
-  lcd.init();                      // initialize the lcd 
+  lcd.init();                      // initialize the lcd
   // Print a message to the LCD.
   lcd.backlight();
-  lcd.setCursor(1,0);
+  lcd.setCursor(0,0);
   lcd.print("Bienvenue ");
 }
 
 void loop() {
-  //the  main code , to run repeatedly:
+  // put your main code here, to run repeatedly:
 
   // Check if the elapsed time since the last RFID card reading is greater than the interval
   unsigned long currentMillis = millis();
@@ -62,19 +62,19 @@ void loop() {
     for (byte i=0; i<4; i++){
       Serial.print(nuidPICC[i], HEX);
     }
-
+ 
     lecture = true;
     previousMillis = currentMillis; // Update the previousMillis variable with the current time
   }
 
-  if (Serial.available()) 
+  if (Serial.available())
   {
     data = Serial.read();
     nom1 = Serial.readString();
     if (data == '1'){  
       lcd.clear();
-      lcd.setCursor(1,0);
-      lcd.print("Bienvenue ");
+      lcd.setCursor(5,0);
+      lcd.print("Bienvenue");
       lcd.setCursor(1,1);
       lcd.print(nom1);
       digitalWrite(5,HIGH); // activate the buzzer
